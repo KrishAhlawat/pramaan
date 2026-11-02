@@ -1,0 +1,16 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: pramaan-db
+    environment:
+      POSTGRES_USER: pramaan
+      POSTGRES_PASSWORD: pramaan
+      POSTGRES_DB: pramaan
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  pgdata:
